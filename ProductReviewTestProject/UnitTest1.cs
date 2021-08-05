@@ -60,5 +60,14 @@ namespace ProductReviewTestProject
             var expected = new List<int>(temp);
             CollectionAssert.AreEqual(expected, actual);
         }
+        //test method retrieve data if islike is true
+        [TestMethod]
+        public void TestMethodForRetrievalDataBasedOnIsLike()
+        {
+            List<int> actual = ProductDataTable.ReturnsOnlyIsLikeFieldAsTrue(dataTable);
+            int[] temp = {1,2,4,1,6,7,8,4,10,5,9,11,11,1,6,7,8,4};
+            var expected = new List<int>(temp);
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }
