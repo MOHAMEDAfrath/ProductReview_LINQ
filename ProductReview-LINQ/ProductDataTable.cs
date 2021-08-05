@@ -64,10 +64,10 @@ namespace ProductReview_LINQ
         public static int ReturnsReviewForNice(DataTable dataTable)
         {
             int count = 0;
-            var res = from product in dataTable.AsEnumerable() where product.Field<string>("review") == "Nice" select product;
-            foreach (var p in res)
+            var result = from product in dataTable.AsEnumerable() where product.Field<string>("review") == "Nice" select product;
+            foreach (var mem in result)
             {
-                Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
+                Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", mem["productId"], mem["userId"], mem["rating"], mem["review"], mem["isLike"]);
                 count++;
             }
             return count;
