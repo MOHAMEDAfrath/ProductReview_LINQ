@@ -91,6 +91,19 @@ namespace ProductReview_LINQ
             }
             return update;
         }
+        ///skip top 5 records
+        public static List<int> SkipTopFiveRecords(List<ReviewProduct> products)
+        {
+            List<int> list = new List<int>();
+            Console.WriteLine("Skip Top Five records in list");
+            var result = (from product in products orderby product.rating descending select product).Skip(5).ToList();
+            foreach(var mem in result)
+            {
+                list.Add(mem.userId);
+                Console.WriteLine(mem.userId);
+            }
+            return list;
+        }
         /// Display the details in list
         public static void DisplayList(List<ReviewProduct> products)
         {
