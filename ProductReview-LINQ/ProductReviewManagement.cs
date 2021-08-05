@@ -25,7 +25,7 @@ namespace ProductReview_LINQ
             products.Add(new ReviewProduct() { productId = 7, userId = 10, review = "Very Good", rating = 1, isLike = true });
             products.Add(new ReviewProduct() { productId = 9, userId = 5, review = "Very Good", rating = 1, isLike = true });
             products.Add(new ReviewProduct() { productId = 10, userId = 3, review = "Bad", rating = 3, isLike = false });
-            products.Add(new ReviewProduct() { productId = 1, userId = 2, review = "Bad", rating = 5, isLike = false });
+            products.Add(new ReviewProduct() { productId = 1, userId = 2, review = "Bad", rating = 1, isLike = false });
             products.Add(new ReviewProduct() { productId = 5, userId = 9, review = "Average", rating = 1, isLike = true });
             products.Add(new ReviewProduct() { productId = 3, userId = 11, review = "Nice", rating = 5, isLike = true });
             products.Add(new ReviewProduct() { productId = 10, userId = 3, review = "Bad", rating = 3, isLike = false });
@@ -36,7 +36,7 @@ namespace ProductReview_LINQ
             products.Add(new ReviewProduct() { productId = 4, userId = 7, review = "Nice", rating = 2, isLike = true });
             products.Add(new ReviewProduct() { productId = 11, userId = 8, review = "Average", rating = 1, isLike = true });
             products.Add(new ReviewProduct() { productId = 3, userId = 9, review = "Bad", rating = 3, isLike = false });
-            products.Add(new ReviewProduct() { productId = 5, userId = 4, review = "Average", rating = 1, isLike = true });
+            products.Add(new ReviewProduct() { productId = 4, userId = 4, review = "Average", rating = 4, isLike = true });
             //DisplayList(products);
             return products ;
         }
@@ -50,6 +50,18 @@ namespace ProductReview_LINQ
             foreach(var mem in result)
             {
                 list.Add(mem.userId);
+            }
+            return list;
+        }
+        //retrieve records based on rating and product ID
+        public static List<string> RetrieveRecordsBasedOnRatingAndProductId(List<ReviewProduct> products)
+        {
+            List<string> list = new List<string>();   
+            var result = (from product in products where product.rating > 3 && (product.productId == 1 || product.productId == 4 || product.productId == 9) select product).ToList();
+            DisplayList(result);
+            foreach(var mem in result)
+            {
+                list.Add(mem.productId + " " + mem.userId + " " + mem.review + " " + mem.rating + " " + mem.isLike);
             }
             return list;
         }
