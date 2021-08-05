@@ -72,5 +72,17 @@ namespace ProductReview_LINQ
             }
             return count;
         }
+        //retrieve rating in ascending order based on productid given
+        public static string ReturnsUserIdRatingInSortedOrder(DataTable dataTable)
+        {
+            string update = "";
+            var result = from product in dataTable.AsEnumerable() orderby product.Field<int>("rating") where product.Field<int>("productId") == 10 select product;
+            foreach(var mem in result)
+            {
+                Console.WriteLine(mem.Field<int>("rating"));
+                update += mem.Field<int>("rating") + " ";
+            }
+            return update;
+        }
     }
 }

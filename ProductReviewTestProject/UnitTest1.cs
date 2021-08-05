@@ -77,12 +77,22 @@ namespace ProductReviewTestProject
             string expected = "1 2.3 2 2 3 3 4 3.7 9 1.3 5 2 7 1 10 3.7 11 1.5 ";
             Assert.AreEqual(expected, actual);
         }
+        //retrieve message based on nice review
         [TestMethod]
         public void TestMethodRetreiveDataForNiceMessage()
         {
             int actual = ProductDataTable.ReturnsReviewForNice(dataTable);
             int expected = 6;
             Assert.AreEqual(expected, actual);
+        }
+        //test method retrieves data ordered by
+        [TestMethod]
+        public void TestMethodRetrieveDataOrderedByRating_RetrievedUsingProductId()
+        {
+            string actual = ProductDataTable.ReturnsUserIdRatingInSortedOrder(dataTable);
+            string expected = "3 3 5 ";
+            Assert.AreEqual(expected, actual);
+
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ProductReview_LINQ
             Console.WriteLine("Hello World!");
             List<ReviewProduct> productreview = ProductReviewManagement.GetProductReviewList();
             DataTable dataTable = ProductDataTable.CreateDataTable(productreview);
-            ProductDataTable.ReturnsReviewForNice(dataTable);
+            ProductDataTable.ReturnsUserIdRatingInSortedOrder(dataTable);
 
                    }
     } 
