@@ -32,5 +32,13 @@ namespace ProductReviewTestProject
             var expected = new List<string>(temp);
             CollectionAssert.AreEqual(expected, actual);
         }
+        //retrieve count based on product id
+        [TestMethod]
+        public void TestMethodForCountBasedOnProductId()
+        {
+            string expected = "1 3 2 4 3 4 4 3 9 3 5 2 7 1 10 3 11 2 ";
+            string actual = ProductReviewManagement.RetrieveCountForProductID(productreview);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

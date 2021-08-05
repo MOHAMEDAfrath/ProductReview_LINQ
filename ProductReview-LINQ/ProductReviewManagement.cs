@@ -65,6 +65,20 @@ namespace ProductReview_LINQ
             }
             return list;
         }
+        //retrieve count
+        public static string RetrieveCountForProductID(List<ReviewProduct> products)
+        {
+            string update= null;
+            var result = products.GroupBy(x => x.productId).Select(a => new { ProductId = a.Key, count = a.Count() });
+            foreach (var mem in result)
+            {
+                Console.WriteLine("ProductId"+" "+ mem.ProductId + " " + "Count" + " "+ mem.count);
+
+                update += mem.ProductId + " " + mem.count+" ";
+               
+            }
+            return update;
+        }
         /// Display the details in list
         public static void DisplayList(List<ReviewProduct> products)
         {
