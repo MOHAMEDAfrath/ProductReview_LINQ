@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProductReview_LINQ;
 using System.Collections.Generic;
+using System.Data;
 
 namespace ProductReviewTestProject
 {
@@ -9,10 +10,12 @@ namespace ProductReviewTestProject
     public class UnitTest1
     {
         List<ReviewProduct> productreview;
+        DataTable dataTable;
         [TestInitialize]
         public void SetUp()
         {
             productreview = ProductReviewManagement.GetProductReviewList();
+            dataTable = ProductDataTable.CreateDataTable(productreview);
         }
         //retrieves top three record is tested
         [TestMethod]
@@ -48,7 +51,7 @@ namespace ProductReviewTestProject
             string actual = ProductReviewManagement.RetrieveOnlyProductIdAndReviews(productreview);
             Assert.AreEqual(expected, actual);
         }
-        //test mwthod for skip top 5 records
+        //test method for skip top 5 records
         [TestMethod]
         public void TestMethodForSkipTop5Records()
         {
