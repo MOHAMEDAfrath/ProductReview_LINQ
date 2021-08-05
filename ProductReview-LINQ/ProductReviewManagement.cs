@@ -79,6 +79,18 @@ namespace ProductReview_LINQ
             }
             return update;
         }
+        //Retrieve productId and reviews only
+        public static string RetrieveOnlyProductIdAndReviews(List<ReviewProduct> products)
+        {
+            string update = null;
+            var result = products.Select(product => new { ProductId = product.productId, Review = product.review }).ToList();
+            foreach (var mem in result)
+            {
+                Console.WriteLine(mem.ProductId + " " + mem.Review);
+                update += mem.ProductId + " "+mem.Review+" ";
+            }
+            return update;
+        }
         /// Display the details in list
         public static void DisplayList(List<ReviewProduct> products)
         {
