@@ -69,5 +69,20 @@ namespace ProductReviewTestProject
             var expected = new List<int>(temp);
             CollectionAssert.AreEqual(expected, actual);
         }
+        //Average rating test method
+        [TestMethod]
+        public void TestMethodAverageRating()
+        {
+            string actual = ProductDataTable.AverageRating(dataTable);
+            string expected = "1 2.3 2 2 3 3 4 3.7 9 1.3 5 2 7 1 10 3.7 11 1.5 ";
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void TestMethodRetreiveDataForNiceMessage()
+        {
+            int actual = ProductDataTable.ReturnsReviewForNice(dataTable);
+            int expected = 6;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

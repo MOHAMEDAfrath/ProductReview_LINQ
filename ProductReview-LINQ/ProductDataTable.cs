@@ -16,7 +16,7 @@ namespace ProductReview_LINQ
             DataTable product = new DataTable();
             product.Columns.Add("productId",typeof(int));
             product.Columns.Add("userId",typeof(int));
-            product.Columns.Add("rating");
+            product.Columns.Add("rating",typeof(int));
             product.Columns.Add("review");
             product.Columns.Add("isLike", typeof(bool));
 
@@ -46,6 +46,31 @@ namespace ProductReview_LINQ
                 list.Add(Convert.ToInt32(mem["userId"]));
             }
             return list;
+        }
+        public static string AverageRating(DataTable dataTable)
+        {
+            string update = "";
+            var result = from product in dataTable.AsEnumerable()
+                         group product by product.Field<int>("productId") into temp
+                         select new { productid = temp.Key, Average = Math.Round(temp.Average(x => x.Field<int>("rating")),1) };
+            foreach(var mem in result)
+            {
+                Console.WriteLine(mem.productid+" "+mem.Average);
+                update += mem.productid + " " + mem.Average + " ";
+            }
+            return update;          
+        }
+        //return the count of record with nice review
+        public static int ReturnsReviewForNice(DataTable dataTable)
+        {
+            int count = 0;
+            var res = from product in dataTable.AsEnumerable() where product.Field<string>("review") == "Nice" select product;
+            foreach (var p in res)
+            {
+                Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
+                count++;
+            }
+            return count;
         }
     }
 }

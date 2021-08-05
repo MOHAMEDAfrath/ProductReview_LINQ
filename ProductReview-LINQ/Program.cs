@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace ProductReview_LINQ
 {
@@ -9,7 +10,9 @@ namespace ProductReview_LINQ
         {
             Console.WriteLine("Hello World!");
             List<ReviewProduct> productreview = ProductReviewManagement.GetProductReviewList();
-            ProductReviewManagement.RetrieveRecordsBasedOnRatingAndProductId(productreview);
-        }
+            DataTable dataTable = ProductDataTable.CreateDataTable(productreview);
+            ProductDataTable.ReturnsReviewForNice(dataTable);
+
+                   }
     } 
 }
